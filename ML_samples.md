@@ -84,12 +84,10 @@ with
 
 ```
 process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/START53_V27.db')
-
 process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
-
 ```
 - Note for QCD (Pythia) re-generating events from scratch.
-GEN-level cut at pThat>600 (need boosted events!) for this in the *gensim.py* change the line
+GEN-level cut at pThat>600 (need boosted events!) for this in the *gensimML.py* change the line
 
 ```
 'CKIN(3)=15.           ! minimum pt hat for hard interactions',
@@ -133,14 +131,14 @@ like we did above.  I.e.,
 - open the *hltDY.py* config file with your favorite text editor and change the line
 
 ```
-process.GlobalTag.globaltag = 'START53_LV6A1::All'
+process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
 ```
 
 with
 
 ```
-process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/START53_LV6A1.db')
-process.GlobalTag.globaltag = 'START53_LV6A1::All'
+process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/START53_V27.db')
+process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
 ```
 
 - Now, run the CMSSW executable in the background
@@ -161,39 +159,40 @@ tailf hltDY.log
 - Execute the *cmsDriver* command as:
 
 ```
-cmsDriver.py step2 --filein file:hltDY.root --step RAW2DIGI,L1Reco,RECO,VALIDATION:validation_prod,DQM:DQMOfflinePOGMC --datatier AODSIM,DQM --conditions START53_LV6::All --fileout=recoDY.root --mc --eventcontent AODSIM,DQM  --python_filename recoDY.py --no_exec -n 10 
+cmsDriver.py step2 --filein file:hltML.root --step RAW2DIGI,L1Reco,RECO,VALIDATION:validation_prod,DQM:DQMOfflinePOGMC --datatier AODSIM,DQM --conditions START53_V27::All --fileout file:hltML.root --mc --eventcontent AODSIM,DQM --python_filename recoML.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 10
 ```
 
-Note here that the ROOT file *hltDY.root*, which was obtained in the last step (step 1), serves as input for step2.  
-We now process the event up to the final step: the reconstruction (RECO).  This command produces a file, *recoDY.py*, which needs to be modified
+Note here that the ROOT file *hltML.root*, which was obtained in the last step (step 1), serves as input for step2.  
+We now process the event up to the final step: the reconstruction (RECO).  This command produces a file, *recoML.py*, which needs to be modified
 like we did above.  I.e.,
 
-- open the *recoDY.py* config file with your favorite text editor and change the line
+- open the *recoML.py* config file with your favorite text editor and change the line
 
 ```
-process.GlobalTag.globaltag = 'START53_LV6A1::All'
+process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
 ```
 
 with
 
 ```
-process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/START53_LV6A1.db')
-process.GlobalTag.globaltag = 'START53_LV6A1::All'
+process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/START53_V27.db')
+process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
 ```
+
 
 - Now, run the CMSSW executable in the background
 
 ```
-cmsRun recoDY.py > recoDY.log 2>&1 &
+cmsRun recoML.py > recoML.log 2>&1 &
 ``` 
 
 - Check the development of the job:
 
 ```
-tailf recoDY.log
+tailf recoML.log
 ```
 
-The resulting ROOT file, *recoDY.root*, is in the same format as 
+The resulting ROOT file, *recoML.root*, is in the same format as 
 the MC and Data released by CMS.
 
 
