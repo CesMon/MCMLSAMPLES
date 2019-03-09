@@ -1,10 +1,6 @@
 # ML samples with tracker hits
 ## Description
-
-#### How to produce 
-
 ### Examples for CMS 2012 data
-
 #### How to produce ML samples with tracker hits
 
 We will produce these events in four steps.  First we perform the simulation up to the *SIM* step, then another intermedite step
