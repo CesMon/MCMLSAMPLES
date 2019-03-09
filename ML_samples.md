@@ -195,6 +195,26 @@ tailf recoML.log
 The resulting ROOT file, *recoML.root*, is in the same format as 
 the MC and Data released by CMS.
 
+##### step 3:Extract Information NTUPLE
 
-<!-- #### How to include pileup simulation
-#### How to do Raw data reconstruction -->
+- Obtain the code from git:
+```
+git clone git://github.com/cms-legacydata-analyses/PhysObjectExtractorTool.git
+cd PhysObjectExtractorTool
+```
+- Compile everything:
+```
+cd 
+scram b
+```
+- Make a soft link to the python configuration file
+```
+ln -s python/physicsobjectsinfo_cfg.py .
+```
+- Run the CMSSW configuration file
+```
+cmsRun step3.py
+```
+
+##### As a result you will get a ObjectInfoNtuple.root and histo.root file with simple variables and histograms.
+
