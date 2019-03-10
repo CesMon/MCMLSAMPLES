@@ -87,14 +87,12 @@ GEN-level cut at pThat>600 (need boosted events!) for this in the *gensimML.py* 
 
 ```
 'CKIN(3)=15.           ! minimum pt hat for hard interactions',
-
 ```
 with
 
 
 ```
 'CKIN(3)=600.           ! minimum pt hat for hard interactions',
-
 ```
 
 
@@ -117,14 +115,14 @@ tailf gensimML.log
 - Execute the *cmsDriver* command as:
 
 ```
-cmsDriver.py step1 --filein file:gensimDY.root --step=DIGI,L1,DIGI2RAW,HLT:2011 --datatier GEN-RAW --conditions=START53_LV6A1::All --fileout=hltDY.root --eventcontent RAWSIM --python_filename hltDY.py --number=10 --mc --no_exec
+cmsDriver.py step1 --filein file:gensimML.root --fileout file:hltML.root --mc --eventcontent RAWSIM --runsScenarioForMC Run2012_AB_C_D_oneRunPerEra  --datatier GEN-SIM-RAW --conditions=START53_V27::All --step DIGI,L1,DIGI2RAW,HLT:7E33v2 --python_filename hltML.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 10
 ```
 
-Note here that the ROOT file *gensimDY.root*, which was obtained in the last step (step 0), serves as input for step1.  
-We now process the event up to the high level trigger (HLT) simulation.  This command produces a file, *hltDY.py*, which needs to be modified
+Note here that the ROOT file *gensimML.root*, which was obtained in the last step (step 0), serves as input for step1.  
+We now process the event up to the high level trigger (HLT) simulation.  This command produces a file, *hltML.py*, which needs to be modified
 like we did above.  I.e.,
 
-- open the *hltDY.py* config file with your favorite text editor and change the line
+- open the *hlt.py* config file with your favorite text editor and change the line
 
 ```
 process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
@@ -136,17 +134,30 @@ with
 process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/START53_V27.db')
 process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
 ```
+change the line
+
+```
+outputCommands = process.AODSIMEventContent.outputCommands+cms
+```
+
+```
+outputCommands = process.AODSIMEventContent.outputCommands+cms.untracked.vstring('keep *_simSiPixelDigis_*_*','keep *_simSiStripDigis_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*','keep *_g4SimHits_*_*','keep *_generalTracks_*_*'),#+cms.untracked.vstring('keep *_siStripMatchedRecHits_*_*','keep *_siPixelRecHits_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*'),#cms.untracked.vstring('keep *'),#process.AODSIMEventContent.outputCommands,
+
+```
+
+
+
 
 - Now, run the CMSSW executable in the background
 
 ```
-cmsRun hltDY.py > hltDY.log 2>&1 &
+cmsRun hltML.py > hltML.log 2>&1 &
 ``` 
 
 - Check the development of the job:
 
 ```
-tailf hltDY.log
+tailf hltML.log
 ```
 
 
@@ -175,6 +186,14 @@ process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.c
 process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
 ```
 
+and change the line
+```
+outputCommands = process.AODSIMEventContent.outputCommands
+```
+with
+```
+outputCommands = process.AODSIMEventContent.outputCommands+cms.untracked.vstring('keep *_simSiPixelDigis_*_*','keep *_simSiStripDigis_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*','keep *_g4SimHits_*_*','keep *_generalTracks_*_*'),#+cms.untracked.vstring('keep *_siStripMatchedRecHits_*_*','keep *_siPixelRecHits_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*'),#cms.untracked.vstring('keep *'),#process.AODSIMEventContent.outputCommands,
+```
 
 - Now, run the CMSSW executable in the background
 
