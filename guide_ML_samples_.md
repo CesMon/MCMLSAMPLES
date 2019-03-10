@@ -195,17 +195,13 @@ the MC and Data released by CMS.
 
 - Obtain the code from git:
 ```
-git clone git://github.com/cms-legacydata-analyses/PhysObjectExtractorTool.git
-cd PhysObjectExtractorTool
+git clone git://github.com/CesMon/ML_samples.git
+cd ML_samples
 ```
 - Compile everything:
 ```
-cd 
+cd SaveHits
 scram b
-```
-- Make a soft link to the python configuration file
-```
-ln -s python/physicsobjectsinfo_cfg.py .
 ```
 - Run the CMSSW configuration file
 ```
