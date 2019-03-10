@@ -215,11 +215,14 @@ the MC and Data released by CMS.
 - Obtain the code from git:
 ```
 git clone git://github.com/CesMon/ML_samples.git
-cd ML_samples
 ```
+- Change the directory
+```
+cd ML_samples/SaveHits/
+```
+
 - Compile everything:
 ```
-cd SaveHits
 scram b
 ```
 - Run the CMSSW configuration file
