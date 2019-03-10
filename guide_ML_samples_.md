@@ -209,7 +209,7 @@ tailf recoML.log
 The resulting ROOT file, *recoML.root*, is in the same format as 
 the MC and Data released by CMS.
 
-##### step 3:Extract Information NTUPLE
+##### step 3: NTUPLE
 
 - Obtain the code from git:
 ```
