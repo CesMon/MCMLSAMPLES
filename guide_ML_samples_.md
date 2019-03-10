@@ -137,12 +137,11 @@ process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
 change the line
 
 ```
-outputCommands = process.AODSIMEventContent.outputCommands+cms
+outputCommands = process.AODSIMEventContent.outputCommands+cms,
 ```
 
 ```
 outputCommands = process.AODSIMEventContent.outputCommands+cms.untracked.vstring('keep *_simSiPixelDigis_*_*','keep *_simSiStripDigis_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*','keep *_g4SimHits_*_*','keep *_generalTracks_*_*'),#+cms.untracked.vstring('keep *_siStripMatchedRecHits_*_*','keep *_siPixelRecHits_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*'),#cms.untracked.vstring('keep *'),#process.AODSIMEventContent.outputCommands,
-
 ```
 
 
@@ -188,7 +187,7 @@ process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
 
 and change the line
 ```
-outputCommands = process.AODSIMEventContent.outputCommands
+outputCommands = process.AODSIMEventContent.outputCommands,
 ```
 with
 ```
