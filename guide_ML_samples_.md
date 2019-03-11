@@ -107,7 +107,6 @@ with
 'CKIN(3)=600.           ! minimum pt hat for hard interactions',
 ```
 
-
 - Run the CMSSW executable in the background
 
 ```
@@ -151,12 +150,11 @@ change the line
 ```
 outputCommands = process.AODSIMEventContent.outputCommands+cms,
 ```
+with
 
 ```
 outputCommands = process.AODSIMEventContent.outputCommands+cms.untracked.vstring('keep *_simSiPixelDigis_*_*','keep *_simSiStripDigis_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*','keep *_g4SimHits_*_*','keep *_generalTracks_*_*'),
-
-
-
+```
 
 - Now, run the CMSSW executable in the background
 
@@ -222,7 +220,7 @@ the MC and Data released by CMS.
 
 ##### step 3: NTUPLE
 The instructions to write your own EDAnalyzer are [here](https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookWriteFrameworkModule).
-
+For this example use a existent EDAnalyzer called SaveHits for more information on the parameters within this can be found in this [repository](https://github.com/emanueleusai/opendatadnn/tree/master/SaveHits/SaveHits).
 
 - Obtain the code from git:
 ```
