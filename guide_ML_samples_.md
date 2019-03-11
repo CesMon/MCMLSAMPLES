@@ -12,10 +12,11 @@ http://opendata.cern.ch/record/8882
 
 
 ### Examples for CMS 2012 data
-#### How to produce ML samples with tracker hits
+#### How to run ML samples with tracker hits
 
-We will produce these events in four steps.  First we perform the simulation up to the *SIM* step, then another intermedite step
-up to the HLT simulation, then the reconstruction, and then finaly use a tipe ED to extract the information. 
+We will produce these events in four steps.  First we perform the simulation up to the *SIM* step, then another step
+up to the *HLT* simulation, then up to the reconstruction *RECO*, and then finaly extract information from a CMS root file type EDM  by
+an EDAnalyzer in *NTUPLE* format. 
 
 To start, first create a [VM](http://opendata.cern.ch/record/252 "CMS Open Data Portal") from the CMS Open Data website.
 
@@ -221,6 +222,8 @@ The resulting ROOT file, *recoML.root*, is in the same format as
 the MC and Data released by CMS.
 
 ##### step 3: NTUPLE
+The instructions to write your own EDAnalyzer are [here](https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookWriteFrameworkModule).
+
 
 - Obtain the code from git:
 ```
