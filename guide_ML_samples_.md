@@ -211,7 +211,7 @@ the MC and Data released by CMS.
 
 ##### step 3: NTUPLE
 The instructions to write your own EDAnalyzer are [here](https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookWriteFrameworkModule).
-For this example use a existent EDAnalyzer called SaveHits for more information on the parameters within this can be found in this [repository](https://github.com/emanueleusai/opendatadnn/tree/master/SaveHits/SaveHits).
+For this example use an existing EDAnalyzer called SaveHits for more information on the parameters within this can be found in this [repository](https://github.com/emanueleusai/opendatadnn/tree/master/SaveHits/SaveHits).
 
 - Obtain the code from git:
 ```
