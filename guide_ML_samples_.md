@@ -39,9 +39,9 @@ Then follow these steps:
   ```
   cmsenv
   ```   
-
-Next, identify the configuration fragment that determines what physics event generator we wish to use and what topology we intend to generate.  In
-this example we will use the `QCDForPF_8TeV_cfi.py` fragment , which can be found in the [/Configuration/Generator/python](https://github.com/cms-sw/cmssw/blob/CMSSW_5_3_X/Configuration/Generator/python) area of CMSSW.  More information on the parameters within this
+  
+<!--Next, identify the configuration fragment that determines what physics event generator we wish to use and what topology we intend to generate. -->
+In this example we will use the `QCDForPF_8TeV_cfi.py` fragment , which can be found in the [/Configuration/Generator/python](https://github.com/cms-sw/cmssw/blob/CMSSW_5_3_X/Configuration/Generator/python) area of CMSSW.  More information on the parameters within this
 fragment can be found in the [MC production overview](/docs/cms-mc-production-overview) documentation.
 
 ##### Step 0: Generation and simulation
