@@ -1,15 +1,6 @@
 # ML samples with tracker hits
 ## Description
-Use low-level tracking information with ML to create event-level or jetlevel classifiers, aka the end-to-end approach.
-- Need position of pixel and strip tracker hits in simple ntuple-like format.
-- Use case: top vs QCD discriminator.
-- Opendata files are AOD, no tracker rechits available.
-- Must re-process files using open config files
-
-•Samples 
-Flat QCD:
-http://opendata.cern.ch/record/8882
-
+Use low-level tracking information with ML to create event-level or jetlevel classifiers.
 
 ### Examples for CMS 2012 data
 #### How to run ML samples with tracker hits
@@ -145,7 +136,7 @@ with
 process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/START53_V27.db')
 process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
 ```
-change the line
+- Note to later use the EDAnalyzer change the line
 
 ```
 outputCommands = process.AODSIMEventContent.outputCommands+cms,
