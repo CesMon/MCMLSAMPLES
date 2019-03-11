@@ -153,8 +153,7 @@ outputCommands = process.AODSIMEventContent.outputCommands+cms,
 ```
 
 ```
-outputCommands = process.AODSIMEventContent.outputCommands+cms.untracked.vstring('keep *_simSiPixelDigis_*_*','keep *_simSiStripDigis_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*','keep *_g4SimHits_*_*','keep *_generalTracks_*_*'),#+cms.untracked.vstring('keep *_siStripMatchedRecHits_*_*','keep *_siPixelRecHits_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*'),#cms.untracked.vstring('keep *'),#process.AODSIMEventContent.outputCommands,
-```
+outputCommands = process.AODSIMEventContent.outputCommands+cms.untracked.vstring('keep *_simSiPixelDigis_*_*','keep *_simSiStripDigis_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*','keep *_g4SimHits_*_*','keep *_generalTracks_*_*'),
 
 
 
@@ -203,7 +202,7 @@ outputCommands = process.AODSIMEventContent.outputCommands,
 ```
 with
 ```
-outputCommands = process.AODSIMEventContent.outputCommands+cms.untracked.vstring('keep *_simSiPixelDigis_*_*','keep *_simSiStripDigis_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*','keep *_g4SimHits_*_*','keep *_generalTracks_*_*'),#+cms.untracked.vstring('keep *_siStripMatchedRecHits_*_*','keep *_siPixelRecHits_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*'),#cms.untracked.vstring('keep *'),#process.AODSIMEventContent.outputCommands,
+outputCommands = process.AODSIMEventContent.outputCommands+cms.untracked.vstring('keep *_simSiPixelDigis_*_*','keep *_simSiStripDigis_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*','keep *_g4SimHits_*_*','keep *_generalTracks_*_*'),
 ```
 
 - Now, run the CMSSW executable in the background
@@ -229,11 +228,10 @@ The instructions to write your own EDAnalyzer are [here](https://twiki.cern.ch/t
 ```
 git clone git://github.com/CesMon/ML_samples.git
 ```
-- Change the directory
+- Change to ML_samples/SaveHits/ directory
 ```
 cd ML_samples/SaveHits/
 ```
-
 - Compile everything:
 ```
 scram b
@@ -243,5 +241,5 @@ scram b
 cmsRun step3.py
 ```
 
-##### As a result you will get a ObjectInfoNtuple.root and histo.root file with simple variables and histograms.
+##### As a result you will get a SaveHits.root file with simple variables and histograms.
 
