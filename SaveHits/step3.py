@@ -28,7 +28,7 @@ process.source = cms.Source("PoolSource",
     # replace 'myfile.root' with the source file you want to use
     fileNames = cms.untracked.vstring(
        
-        'file:recoML.root'
+        'file:/home/cms-opendata/CMSSW_5_3_32/src/recoML.root'
           )
 )
 
