@@ -241,5 +241,5 @@ ls -l /cvmfs/
 cmsRun step3.py
 ```
 
-##### As a result you will get a SaveHits.root file with simple variables and histograms.
+##### As a result you will get a savehits_output.root file with simple variables and histograms.
 
