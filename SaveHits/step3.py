@@ -28,7 +28,7 @@ process.source = cms.Source("PoolSource",
     # replace 'myfile.root' with the source file you want to use
     fileNames = cms.untracked.vstring(
        
-        'file:/home/cms-opendata/CMSSW_5_3_32/src/recoML.root'
+        'file:/home/cms-opendata/CMSSW_5_3_32/src/recoQCD.root'
           )
 )
 
@@ -47,7 +47,6 @@ process.demo = cms.EDAnalyzer('SaveHits',
    #usePhase2Tracker = cms.bool(False),
    pixelSimLinkSrc = cms.InputTag("simSiPixelDigis"),
    stripSimLinkSrc = cms.InputTag("simSiStripDigis"),
-   #phase2TrackerSimLinkSrc = cms.InputTag("simSiPixelDigis", "Tracker"),
    ROUList = cms.vstring('TrackerHitsPixelBarrelLowTof',
                          'TrackerHitsPixelBarrelHighTof',
                          'TrackerHitsPixelEndcapLowTof',
