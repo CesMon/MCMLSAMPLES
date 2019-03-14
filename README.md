@@ -40,11 +40,11 @@ fragment can be found in the [MC production overview](/docs/cms-mc-production-ov
 - Execute the *cmsDriver* command as:
 
 ```
-cmsDriver.py QCDForPF_8TeV_cfi.py --fileout file:gensimML.root --mc --eventcontent RAWSIM --customise Configuration/StandardSequences/SimWithCastor_cff.customise,Configuration/DataProcessing/Utils.addMonitoring --beamspot Realistic8TeVCollision --datatier GEN-SIM --conditions=START53_V27::All --step GEN,SIM --datamix NODATAMIXER --python_filename gensimML.py --no_exec -n 10
+cmsDriver.py QCDForPF_8TeV_cfi.py --fileout file:gensimQCD.root --mc --eventcontent RAWSIM --customise Configuration/StandardSequences/SimWithCastor_cff.customise,Configuration/DataProcessing/Utils.addMonitoring --beamspot Realistic8TeVCollision --datatier GEN-SIM --conditions=START53_V27::All --step GEN,SIM --datamix NODATAMIXER --python_filename gensimQCD.py --no_exec -n 10
 ```
 
 Note that we put the naked name of our input fragment (*QCDForPF_8TeV_cfi.py*) because the script will look, by default, in
-the */Configuration/Generator/python* area of the CMSSW release.  More information about the *--datatier* used can be found at the [CMS Workbook](https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookDataFormats); that is the level of information we need/want in our ROOT output file.
+the */Configuration/Generator/python* area of the CMSSW release.  More information about the *--datatier* used can be found at the [CMS Workbook] (https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookDataFormats); that is the level of information we need/want in our ROOT output file.
 
 Notice also that wee have used
 the `START53_V27::All` conditions, because this is the snapshot of the conditions database we need.  More information about this can
@@ -52,7 +52,7 @@ be found at the [CMS Guide for Conditions](docs/cms-guide-for-condition-database
 only do the *GEN* and *SIM* parts of the whole chain.  We only generate 10 events for this example and choose the name of *gensimML* for the output files
 in order to identify them correctly.
 
-After executing this command, we will get the *gensimML.py* configuration file, which will be run with the *cmsRun* executable.  First, however, we need
+After executing this command, we will get the *gensimQCD.py* configuration file, which will be run with the *cmsRun* executable.  First, however, we need
 to do a few modifications.
 
 - Note that we need to be able to locate the database conditions as required by the *--conditions* switch.  Therefore, we need to make the following
@@ -73,7 +73,7 @@ ls -l /cvmfs/
 
 You should now see the `cms-opendata-conddb.cern.ch` link in the `/cvmfs` area.
 
-- Open the *gensimML.py* config file with your favorite text editor and change the line
+- Open the *gensimQCD.py* config file with your favorite text editor and change the line
 
 ```
 process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
@@ -86,13 +86,12 @@ process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.c
 process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
 ```
 - Note for QCD (Pythia) re-generating events from scratch.
-GEN-level cut at pThat>600 (need boosted events!) for this in the *gensimML.py* change the line
+GEN-level cut at pThat>600 (need boosted events!) for this in the *gensimQCD.py* change the line
 
 ```
 'CKIN(3)=15.           ! minimum pt hat for hard interactions',
 ```
 with
-
 
 ```
 'CKIN(3)=600.           ! minimum pt hat for hard interactions',
@@ -101,7 +100,7 @@ with
 - Run the CMSSW executable in the background
 
 ```
-cmsRun gensimML.py > gensimML.log 2>&1 &
+cmsRun gensimQCD.py > gensimML.log 2>&1 &
 ``` 
 
 - Check the development of the job:
@@ -117,14 +116,14 @@ tailf gensimML.log
 - Execute the *cmsDriver* command as:
 
 ```
-cmsDriver.py step1 --filein file:gensimML.root --fileout file:hltML.root --mc --eventcontent RAWSIM --runsScenarioForMC Run2012_AB_C_D_oneRunPerEra  --datatier GEN-SIM-RAW --conditions=START53_V27::All --step DIGI,L1,DIGI2RAW,HLT:7E33v2 --python_filename hltML.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 10
+cmsDriver.py step1 --filein file:gensimQCD.root --fileout file:hltQCD.root --mc --eventcontent RAWSIM --runsScenarioForMC Run2012_AB_C_D_oneRunPerEra  --datatier GEN-SIM-RAW --conditions=START53_V27::All --step DIGI,L1,DIGI2RAW,HLT:7E33v2 --python_filename hltQCD.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 10
 ```
 
-Note here that the ROOT file *gensimML.root*, which was obtained in the last step (step 0), serves as input for step1.  
-We now process the event up to the high level trigger (HLT) simulation.  This command produces a file, *hltML.py*, which needs to be modified
+Note here that the ROOT file *gensimQCD.root*, which was obtained in the last step (step 0), serves as input for step1.  
+We now process the event up to the high level trigger (HLT) simulation.  This command produces a file, *hltQCD.py*, which needs to be modified
 like we did above.  I.e.,
 
-- open the *hlt.py* config file with your favorite text editor and change the line
+- open the *hltQCD.py* config file with your favorite text editor and change the line
 
 ```
 process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
@@ -150,13 +149,13 @@ outputCommands = process.AODSIMEventContent.outputCommands+cms.untracked.vstring
 - Now, run the CMSSW executable in the background
 
 ```
-cmsRun hltML.py > hltML.log 2>&1 &
+cmsRun hltQCD.py > hltQCD.log 2>&1 &
 ``` 
 
 - Check the development of the job:
 
 ```
-tailf hltML.log
+tailf hltQCD.log
 ```
 
 
@@ -165,14 +164,14 @@ tailf hltML.log
 - Execute the *cmsDriver* command as:
 
 ```
-cmsDriver.py step2 --filein file:hltML.root --step RAW2DIGI,L1Reco,RECO,VALIDATION:validation_prod,DQM:DQMOfflinePOGMC --datatier AODSIM,DQM --conditions START53_V27::All --fileout file:hltML.root --mc --eventcontent AODSIM,DQM --python_filename recoML.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 10
+cmsDriver.py step2 --filein file:hltQCD.root --step RAW2DIGI,L1Reco,RECO,VALIDATION:validation_prod,DQM:DQMOfflinePOGMC --datatier AODSIM,DQM --conditions START53_V27::All --fileout file:hltQCD.root --mc --eventcontent AODSIM,DQM --python_filename recoQCD.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 10
 ```
 
-Note here that the ROOT file *hltML.root*, which was obtained in the last step (step 1), serves as input for step2.  
-We now process the event up to the final step: the reconstruction (RECO).  This command produces a file, *recoML.py*, which needs to be modified
+Note here that the ROOT file *hltQCD.root*, which was obtained in the last step (step 1), serves as input for step2.  
+We now process the event up to the final step: the reconstruction (RECO).  This command produces a file, *recoQCD.py*, which needs to be modified
 like we did above.  I.e.,
 
-- open the *recoML.py* config file with your favorite text editor and change the line
+- open the *recoQCD.py* config file with your favorite text editor and change the line
 
 ```
 process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
@@ -197,16 +196,16 @@ outputCommands = process.AODSIMEventContent.outputCommands+cms.untracked.vstring
 - Now, run the CMSSW executable in the background
 
 ```
-cmsRun recoML.py > recoML.log 2>&1 &
+cmsRun recoQCD.py > recoQCD.log 2>&1 &
 ``` 
 
 - Check the development of the job:
 
 ```
-tailf recoML.log
+tailf recoQCD.log
 ```
 
-The resulting ROOT file, *recoML.root*, is in the same format as 
+The resulting ROOT file, *recoQCD.root*, is in the same format as 
 the MC and Data released by CMS.
 
 ##### step 3: NTUPLE
