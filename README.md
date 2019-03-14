@@ -138,12 +138,13 @@ process.GlobalTag = GlobalTag(process.GlobalTag, 'START53_V27::All', '')
 - Note to later use the EDAnalyzer change the line
 
 ```
-outputCommands = process.AODSIMEventContent.outputCommands+cms,
+outputCommands = process.RAWSIMEventContent.outputCommands
 ```
 with
 
 ```
-outputCommands = process.AODSIMEventContent.outputCommands+cms.untracked.vstring('keep *_simSiPixelDigis_*_*','keep *_simSiStripDigis_*_*','keep *_siPixelClusters_*_*','keep *_siStripClusters_*_*','keep *_g4SimHits_*_*','keep *_generalTracks_*_*'),
+outputCommands = process.RAWSIMEventContent.outputCommands+cms.untracked.vstring('keep *_simSiPixelDigis_*_*','keep *_simSiStripDigis_*_*'),
+ 
 ```
 
 - Now, run the CMSSW executable in the background
@@ -164,7 +165,7 @@ tailf hltQCD.log
 - Execute the *cmsDriver* command as:
 
 ```
-cmsDriver.py step2 --filein file:hltQCD.root --step RAW2DIGI,L1Reco,RECO,VALIDATION:validation_prod,DQM:DQMOfflinePOGMC --datatier AODSIM,DQM --conditions START53_V27::All --fileout file:hltQCD.root --mc --eventcontent AODSIM,DQM --python_filename recoQCD.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 10
+cmsDriver.py step2 --filein file:hltQCD.root --step RAW2DIGI,L1Reco,RECO,VALIDATION:validation_prod,DQM:DQMOfflinePOGMC --datatier AODSIM,DQM --conditions START53_V27::All --fileout file:recoQCD.root --mc --eventcontent AODSIM,DQM --python_filename recoQCD.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring -n 10
 ```
 
 Note here that the ROOT file *hltQCD.root*, which was obtained in the last step (step 1), serves as input for step2.  
@@ -214,11 +215,11 @@ For this example use an existing EDAnalyzer called SaveHits for more information
 
 - Obtain the code from git:
 ```
-git clone git://github.com/CesMon/ML_samples.git
+git clone git://github.com/CesMon/MCMLSAMPLES.git
 ```
 - Change to ML_samples/SaveHits/ directory
 ```
-cd ML_samples/SaveHits/
+cd MCMLSAMPLES/SaveHits/
 ```
 - Compile everything:
 ```
