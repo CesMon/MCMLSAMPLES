@@ -39,7 +39,7 @@ cmsDriver.py QCDForPF_8TeV_cfi.py --fileout file:gensimQCD.root --mc --eventcont
 ```
 
 Note that we put the naked name of our input fragment (*QCDForPF_8TeV_cfi.py*) because the script will look, by default, in
-the */Configuration/Generator/python* area of the CMSSW release.  More information about the *--datatier* used can be found at the [CMS Workbook] (https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookDataFormats); that is the level of information we need/want in our ROOT output file.
+the */Configuration/Generator/python* area of the CMSSW release.  More information about the *--datatier* used can be found at the [CMS Workbook](https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookDataFormats); that is the level of information we need/want in our ROOT output file.
 
 Notice also that wee have used
 the `START53_V27::All` conditions, because this is the snapshot of the conditions database we need.  More information about this can
