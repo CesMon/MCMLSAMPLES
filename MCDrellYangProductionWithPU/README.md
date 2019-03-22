@@ -33,7 +33,7 @@ this example we will use the `DYToLL_M_50_TuneZ2_7TeV_pythia6_tauola_cff.py` fra
 - Execute the *cmsDriver* command as:
 
 ```
-cmsDriver.py DYToLL_M_50_TuneZ2_7TeV_pythia6_tauola_cff.py --mc --eventcontent=RAWSIM --datatier=GEN-SIM --conditions=START53_LV6A1::All --step=GEN,SIM --python_filename=gensimDY.py --no_exec --number=10 --fileout=gensimDY.root
+cmsDriver.py DYToLL_M_50_TuneZ2_7TeV_pythia6_tauola_cff.py --mc --beamspot Realistic7TeV2011CollisionV2 --eventcontent=RAWSIM --datatier=GEN-SIM --conditions=START53_LV6A1::All --step=GEN,SIM --python_filename=gensimDY.py --no_exec --number=10 --fileout=gensimDY.root
 ```
 
 Note that we put the naked name of our input fragment (*DYToLL_M_50_TuneZ2_7TeV_pythia6_tauola_cff.py*) because the script will look, by default, in
@@ -98,7 +98,7 @@ tailf gensimDY.log
 - Execute the *cmsDriver* command as:
 
 ```
-cmsDriver.py step1 --filein file:gensimDY.root --step=DIGI,L1,DIGI2RAW,HLT:2011 --datatier GEN-RAW --conditions=START53_LV6A1::All --fileout=hltDY.root --eventcontent RAWSIM --python_filename hltDY.py --number=10 --mc --no_exec
+cmsDriver.py step1 --filein file:gensimDY.root --fileout=hltDY.root --mc --eventcontent RAWSIM --datatier GEN-RAW --conditions=START53_LV6A1::All --step=DIGI,L1,DIGI2RAW,HLT:2011 --python_filename hltDY.py --no_exec --customise Configuration/DataProcessing/Utils.addMonitoring --number=10 --pileup_input root://eospublic.cern.ch//eos/opendata/cms/MonteCarlo2011/Summer11LegDR/MinBias_TuneZ2_7TeV-pythia6/GEN-SIM/START53_LV4-v1/10000/00064CCC-A218-E311-A2E9-D485646A4E1A.root --pileup 2011_FinalDist_OOTPU
 ```
 
 Note here that the ROOT file *gensimDY.root*, which was obtained in the last step (step 0), serves as input for step1.  
