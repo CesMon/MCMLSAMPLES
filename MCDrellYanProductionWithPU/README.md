@@ -1,4 +1,4 @@
-# How to produce 2011 MC Drell-Yan events from scratch with no Pile-up
+# How to produce 2011 MC Drell-Yan events from scratch with Pile-up
 
 We will produce these events in three steps.  First we perform the simulation up to the *SIM* step, then another intermedite step
 up to the HLT simulation, and then the reconstruction. 
