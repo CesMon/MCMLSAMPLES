@@ -1,6 +1,5 @@
 # RAW Reconstruction
-This example shows the reconstruction process from RAW data, We will produce these events in three steps.  First we perform the simulation up to the *SIM* step, then another intermedite step
-up to the HLT simulation, and then the reconstruction. 
+This sample shows the process of reconstructing RAW data located in CMS Open Data Portal.
 
 To start, first create a [VM](http://opendata.cern.ch/record/252 "CMS Open Data Portal") from the CMS Open Data website.
 
