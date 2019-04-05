@@ -1,5 +1,5 @@
 
-## step 0: RECO (AOD)
+## step: RECO (AOD)
 
 Select input RAW sample from [CMS Open Data Portal](http://opendata.cern.ch), this example we will use the `root://eospublic.cern.ch//eos/opendata/cms/Run2011A/Jet/RAW/v1/000/163/589/06C39F3E-6471-E011-AE08-0030487CD7B4.root` RAW data.
 
@@ -36,3 +36,4 @@ cmsRun recojet.py > recojet.log 2>&1 &
 ```
 tailf recojet.log
 ```
+The resulting ROOT file, recojet.root, is in the same format as the MC and Data released by CMS.
