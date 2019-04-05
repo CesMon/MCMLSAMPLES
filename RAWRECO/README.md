@@ -24,19 +24,6 @@ Then follow these steps:
   cmsenv
   ```   
 
-Select input RAW sample from [CMS Open Data Portal](http://opendata.cern.ch), this example we will use the `root://eospublic.cern.ch//eos/opendata/cms/Run2011A/DoubleElectron/RAW/v1/000/160/431/080D15C9-FF4D-E011-9484-0030487C7828.root` RAW data.
-
-
-
-## step 0: RECO (AOD)
-
-- Execute the *cmsDriver* command as:
-
-```
-cmsDriver.py reco -s --filein root://eospublic.cern.ch//eos/opendata/cms/Run2011A/DoubleElectron/RAW/v1/000/160/431/080D15C9-FF4D-E011-9484-0030487C7828.root --fileout=recoee.root RAW2DIGI,L1Reco,RECO,USER:EventFilter/HcalRawToDigi/hcallaserhbhehffilter2012_cff.hcallLaser2012Filter --data --conditions FT_R_53_LV5::All --eventcontent AOD --customise Configuration/DataProcessing/RecoTLR.customisePrompt --no_exec --python recoee.py -n 10 
-
-```
-
 - Note that we need to be able to locate the database conditions as required by the *--conditions* switch.  Therefore, we need to make the following
  symbolic links:
 
