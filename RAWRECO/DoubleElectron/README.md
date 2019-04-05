@@ -1,5 +1,5 @@
 
-## step 0: RECO (AOD)
+## step: RECO (AOD)
 
 Select input RAW sample from [CMS Open Data Portal](http://opendata.cern.ch), this example we will use the `root://eospublic.cern.ch//eos/opendata/cms/Run2011A/DoubleElectron/RAW/v1/000/160/431/080D15C9-FF4D-E011-9484-0030487C7828.root` RAW data.
 
