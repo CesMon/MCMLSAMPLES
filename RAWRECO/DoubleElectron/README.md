@@ -36,3 +36,4 @@ cmsRun recoee.py > recoee.log 2>&1 &
 ```
 tailf recoee.log
 ```
+The resulting ROOT file, recoee.root, is in the same format as the MC and Data released by CMS.
